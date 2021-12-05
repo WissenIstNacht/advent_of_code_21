@@ -5,19 +5,21 @@ class Day1Part1 extends Solver {
 
   @override
   String solve(List<String> input) {
-    final numberInput = input.map((String e) {
-      return int.parse(e);
-    }).toList();
+    final numberInput = input.map(int.parse).toList();
+    return countIncreases(numberInput).toString();
+  }
+
+  static int countIncreases(List<int> input) {
     var counter = 0;
-    for (var i = 0; i < numberInput.length - 1; i++) {
-      final curr = numberInput[i];
-      final next = numberInput[i + 1];
+    for (var i = 0; i < input.length - 1; i++) {
+      final curr = input[i];
+      final next = input[i + 1];
       if (isIncreasing(curr, next)) {
         counter++;
       }
     }
-    return counter.toString();
+    return counter;
   }
 
-  bool isIncreasing(num a, num b) => b - a > 0;
+  static bool isIncreasing(num a, num b) => b - a > 0;
 }
