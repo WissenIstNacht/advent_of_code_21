@@ -4,7 +4,7 @@ import 'instruction.dart';
 import 'position.dart';
 
 class Day2Part1 extends Solver {
-  Day2Part1() : super(1);
+  Day2Part1() : super(2);
 
   @override
   String solve(List<String> input) {
