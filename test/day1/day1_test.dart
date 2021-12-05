@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:advent_of_code_21/utils.dart';
 import 'package:test/test.dart';
 import 'package:advent_of_code_21/solver.dart';
 
@@ -10,7 +11,7 @@ void main() {
   late Solver solver;
   late List<String> sampleInput;
   setUp(() {
-    sampleInput = File("test/day1/inputs/sample.txt").readAsLinesSync();
+    sampleInput = readSampleInput(1);
   });
   test("test d1p1's solve method", () {
     solver = Day1Part1();
