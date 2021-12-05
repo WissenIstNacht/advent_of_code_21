@@ -1,6 +1,6 @@
 import 'package:advent_of_code_21/solver.dart';
 
-import 'd1p1.dart';
+import 'utils.dart';
 
 class Day1Part2 extends Solver {
   Day1Part2() : super(1);
@@ -16,7 +16,7 @@ class Day1Part2 extends Solver {
       windowSums.add(sum);
     }
 
-    final res = Day1Part1.countIncreases(windowSums);
+    final res = countIncreases(windowSums);
     return res.toString();
   }
 }
