@@ -17,3 +17,19 @@ class Position {
     }
   }
 }
+
+class Position2 extends Position {
+  int _aim = 0;
+
+  @override
+  void move(Instruction instr) {
+    if (instr.isUp()) {
+      _aim -= instr.value;
+    } else if (instr.isDown()) {
+      _aim += instr.value;
+    } else {
+      _horizontal += instr.value;
+      _depth += _aim * instr.value;
+    }
+  }
+}
