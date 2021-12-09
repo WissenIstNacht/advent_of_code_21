@@ -11,22 +11,23 @@ class Day3Part1 extends Solver {
     final s = input.first;
     final rows = input.length;
     final cols = s.length;
-    final acc = List<int>.filled(cols, 0);
+    final init = List<int>.filled(cols, 0);
 
     List<int> folder(List<int> acc, String val) {
-      val.runes.forEachIndexed((index, elem) {
-        if (elem.toString() == "1") {
-          acc[index] += 1;
+      for (var i = 0; i < val.length; i++) {
+        if (val.substring(i, i + 1) == "1") {
+          acc[i] += 1;
         }
-      });
+      }
+      val.runes.forEachIndexed((index, elem) {});
       return acc;
     }
 
-    input.fold(acc, folder);
+    final mostSignificantBit = input.fold(init, folder);
 
-    final gammaArray = acc.map((n) => (n / rows).round());
+    final gammaArray = mostSignificantBit.map((n) => (n / rows).round());
     final gamma = gammaArray
-        .mapIndexed((index, elem) => elem == 1 ? pow(2, cols - index) : 0)
+        .mapIndexed((index, elem) => elem == 1 ? pow(2, cols - (index + 1)) : 0)
         .reduce((a, b) => a + b);
     final epsilon = pow(2, cols) - (1 + gamma);
     return (gamma * epsilon).toString();
