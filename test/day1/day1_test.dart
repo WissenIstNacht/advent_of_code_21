@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:advent_of_code_21/utils.dart';
 import 'package:test/test.dart';
 import 'package:advent_of_code_21/solver.dart';

@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:collection/collection.dart';
 
 import 'package:advent_of_code_21/solver.dart';
 
