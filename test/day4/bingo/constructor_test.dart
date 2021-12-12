@@ -10,10 +10,10 @@ void main() {
     bingoNoNumbers = readTestInput(4, "bingoNoNumbers");
     bingoNoBoards = readTestInput(4, "bingoNoBoards");
   });
-  test("Cell constructors returns normally on (signed) number string", () {
+  test("Bingo constructor returns normally on sample input", () {
     expect(() => Bingo.fromInput(sample), returnsNormally);
   });
-  test("Cell constructors throws on non-number string", () {
+  test("Bingo constructor throws on erroneous input", () {
     expect(() => Bingo.fromInput(bingoNoNumbers), throwsArgumentError);
     expect(() => Bingo.fromInput(bingoNoBoards), throwsArgumentError);
   });

@@ -36,7 +36,6 @@ class Board {
   bool hasWon() {
     var fullColumns = List.filled(cells.first.length, true);
     for (var row in cells) {
-      row.forEach((c) => print(c.marked));
       var fullLine = true;
       row.forEachIndexed((i, c) {
         fullLine = fullLine && c.marked;
