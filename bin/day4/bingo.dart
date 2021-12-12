@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import 'board.dart';
 
 class Bingo {
@@ -23,7 +25,20 @@ class Bingo {
     }
     boards = newBoards;
   }
-  void play() {
-    return;
+
+  void playRound() {
+    final curr = numbers.iterator.current;
+    for (var board in boards) {
+      final c = board.contains(curr);
+      c?.marked = true;
+    }
+
+    if (!numbers.iterator.moveNext()) {
+      throw StateError("No more numbers to draw.");
+    }
+  }
+
+  Board? hasWinningBoard() {
+    return boards.firstWhereOrNull((b) => b.hasWon());
   }
 }

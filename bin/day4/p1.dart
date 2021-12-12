@@ -18,8 +18,8 @@ import 'package:advent_of_code_21/solver.dart';
 //    Get the last number called.
 //    Multiply those numbers.
 
-class Day3Part1 extends Solver {
-  Day3Part1() : super(3);
+class Day4Part1 extends Solver {
+  Day4Part1() : super(3);
 
   @override
   String solve(List<String> input) {
