@@ -3,13 +3,13 @@ import 'package:collection/collection.dart';
 import 'cell.dart';
 
 class Board {
-  late Iterable<Iterable<Cell>> cells;
+  late List<List<Cell>> cells;
 
   Board.fromLines(Iterable<String> lines) {
     if (lines.length != 5) {
       throw ArgumentError("Board input does not have 5 rows");
     }
-    final cols = <Iterable<Cell>>[];
+    final cols = <List<Cell>>[];
     for (var s in lines) {
       final exp = RegExp("\\s+");
       final numbers = s.trim().split(exp);
@@ -18,7 +18,7 @@ class Board {
         throw ArgumentError(
             "Board input has a row that does not have 5 columns");
       }
-      final row = numbers.map((s) => Cell.fromString(s));
+      final row = numbers.map((s) => Cell.fromString(s)).toList();
       cols.add(row);
     }
     cells = cols;
@@ -36,10 +36,11 @@ class Board {
   bool hasWon() {
     var fullColumns = List.filled(cells.first.length, true);
     for (var row in cells) {
+      row.forEach((c) => print(c.marked));
       var fullLine = true;
       row.forEachIndexed((i, c) {
-        fullLine && c.marked;
-        fullColumns[i] && c.marked;
+        fullLine = fullLine && c.marked;
+        fullColumns[i] = fullColumns[i] && c.marked;
       });
       if (fullLine) return true;
     }
