@@ -1,5 +1,7 @@
 import 'package:advent_of_code_21/solver.dart';
 
+import 'bingo.dart';
+
 // Rules of Bingo:
 //  Player has at least one 5x5 borad with numbers.
 //  Numbers are picked at random.
@@ -19,10 +21,19 @@ import 'package:advent_of_code_21/solver.dart';
 //    Multiply those numbers.
 
 class Day4Part1 extends Solver {
-  Day4Part1() : super(3);
+  Day4Part1() : super(4);
 
   @override
   String solve(List<String> input) {
-    return "1";
+    final game = Bingo.fromInput(input);
+
+    while (true) {
+      final currPick = game.pickNumber();
+      game.updateBoards(currPick);
+      final winner = game.hasWinningBoard();
+      if (winner != null) {
+        return (winner.score() * currPick).toString();
+      }
+    }
   }
 }

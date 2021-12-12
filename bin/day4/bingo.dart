@@ -3,15 +3,12 @@ import 'package:collection/collection.dart';
 import 'board.dart';
 
 class Bingo {
-  late Iterable<int> numbers;
+  late Iterator<int> numbers;
   late List<Board> boards;
 
   Bingo.fromInput(List<String> input) {
     final picks = input.first;
-    numbers = picks.split(",").map(int.parse);
-    if (numbers.isEmpty) {
-      throw ArgumentError("The game has no numbers picked");
-    }
+    numbers = picks.split(",").map(int.parse).iterator;
 
     var i = 2;
     var newBoards = <Board>[];
@@ -26,15 +23,17 @@ class Bingo {
     boards = newBoards;
   }
 
-  void playRound() {
-    final curr = numbers.iterator.current;
-    for (var board in boards) {
-      final c = board.contains(curr);
-      c?.marked = true;
-    }
-
-    if (!numbers.iterator.moveNext()) {
+  int pickNumber() {
+    if (!numbers.moveNext()) {
       throw StateError("No more numbers to draw.");
+    }
+    return numbers.current;
+  }
+
+  void updateBoards(int numberPicked) {
+    for (var board in boards) {
+      final c = board.contains(numberPicked);
+      c?.marked = true;
     }
   }
 
