@@ -1,6 +1,7 @@
 import 'package:advent_of_code_21/solver.dart';
 
 import 'bingo.dart';
+import 'board.dart';
 
 class Day4Part2 extends Solver {
   Day4Part2() : super(4);
@@ -8,19 +9,20 @@ class Day4Part2 extends Solver {
   @override
   String solve(List<String> input) {
     final game = Bingo.fromInput(input);
-    var gamesWon = 0;
-    var lastBoard;
+    final boardCount = game.boards.length;
+    final winners = <Board>{};
     var currPick;
 
-    while (gamesWon < game.boards.length) {
-      final currPick = game.pickNumber();
+    while (winners.length < boardCount) {
+      currPick = game.pickNumber();
       game.updateBoards(currPick);
       final winner = game.hasWinningBoard();
       if (winner != null) {
-        gamesWon++;
-        lastBoard = winner;
+        game.removeBoard(winner);
+        winners.add(winner);
       }
     }
+    final lastBoard = winners.last;
     return (lastBoard.score() * currPick).toString();
   }
 }

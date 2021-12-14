@@ -40,4 +40,10 @@ class Bingo {
   Board? hasWinningBoard() {
     return boards.firstWhereOrNull((b) => b.hasWon());
   }
+
+  void removeBoard(Board board) {
+    if (!boards.remove(board)) {
+      throw StateError("Board was not found");
+    }
+  }
 }
