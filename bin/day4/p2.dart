@@ -16,10 +16,12 @@ class Day4Part2 extends Solver {
     while (winners.length < boardCount) {
       currPick = game.pickNumber();
       game.updateBoards(currPick);
-      final winner = game.hasWinningBoard();
-      if (winner != null) {
-        game.removeBoard(winner);
-        winners.add(winner);
+      final roundWinners = game.hasWinningBoards();
+      if (roundWinners.isNotEmpty) {
+        for (var winner in roundWinners) {
+          game.removeBoard(winner);
+          winners.add(winner);
+        }
       }
     }
     final lastBoard = winners.last;

@@ -37,8 +37,8 @@ class Bingo {
     }
   }
 
-  Board? hasWinningBoard() {
-    return boards.firstWhereOrNull((b) => b.hasWon());
+  List<Board> hasWinningBoards() {
+    return boards.where((b) => b.hasWon()).toList();
   }
 
   void removeBoard(Board board) {

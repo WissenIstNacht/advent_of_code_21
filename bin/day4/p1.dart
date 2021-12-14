@@ -30,9 +30,9 @@ class Day4Part1 extends Solver {
     while (true) {
       final currPick = game.pickNumber();
       game.updateBoards(currPick);
-      final winner = game.hasWinningBoard();
-      if (winner != null) {
-        return (winner.score() * currPick).toString();
+      final winner = game.hasWinningBoards();
+      if (winner.isNotEmpty) {
+        return (winner.first.score() * currPick).toString();
       }
     }
   }
