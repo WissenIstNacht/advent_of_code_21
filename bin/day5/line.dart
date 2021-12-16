@@ -10,3 +10,13 @@ class Line {
     end = Point.fromString(value.last);
   }
 }
+
+class AxialLine extends Line {
+  late bool isHorizontal;
+  late bool isVertical;
+
+  AxialLine.fromString(String s) : super.fromString(s) {
+    isVertical = start.x == end.x;
+    isHorizontal = start.y == end.y;
+  }
+}
