@@ -2,8 +2,8 @@ import 'point.dart';
 
 class Line {
   late Point start, end;
-  late int horizontalDirection;
-  late int verticalDirection;
+  late int horizontalDirection, verticalDirection;
+  late int deltaX, deltaY;
 
   /// Constructs a line from a value string value [s] of the form "x1,y1 -> x2,y2".
   Line.fromString(String s) {
@@ -13,6 +13,9 @@ class Line {
 
     horizontalDirection = start.x <= end.x ? 1 : -1;
     verticalDirection = start.y <= end.y ? 1 : -1;
+
+    deltaX = (start.x - end.x).abs();
+    deltaY = (start.y - end.y).abs();
   }
 }
 

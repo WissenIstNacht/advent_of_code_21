@@ -13,17 +13,15 @@ class Grid {
 
   void markAxialLine(AxialLine line) {
     if (line.isHorizontal) {
-      for (var i = line.start.x;
-          i <= line.end.x;
-          i += line.horizontalDirection) {
-        cells[line.start.y][i].lineCount += 1;
+      for (var i = 0; i <= line.deltaX; i++) {
+        final d = i * line.horizontalDirection;
+        cells[line.start.y][line.start.x + d].lineCount += 1;
       }
     }
     if (line.isVertical) {
-      for (var i = line.start.y;
-          i <= line.end.y;
-          i += line.horizontalDirection) {
-        cells[i][line.start.x].lineCount += 1;
+      for (var i = 0; i <= line.deltaY; i++) {
+        final d = i * line.verticalDirection;
+        cells[line.start.y + d][line.start.x].lineCount += 1;
       }
     }
   }
