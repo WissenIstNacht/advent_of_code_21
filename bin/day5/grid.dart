@@ -11,19 +11,8 @@ class Grid {
     }
   }
 
-  void markAxialLine(AxialLine line) {
-    if (line.isHorizontal) {
-      for (var i = 0; i <= line.deltaX; i++) {
-        final d = i * line.horizontalDirection;
-        cells[line.start.y][line.start.x + d].lineCount += 1;
-      }
-    }
-    if (line.isVertical) {
-      for (var i = 0; i <= line.deltaY; i++) {
-        final d = i * line.verticalDirection;
-        cells[line.start.y + d][line.start.x].lineCount += 1;
-      }
-    }
+  void markLine(Line line) {
+    line.pointsCovered().forEach((p) => cells[p.y][p.x].lineCount++);
   }
 
   int countOverlaps() {

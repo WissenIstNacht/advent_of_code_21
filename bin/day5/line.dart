@@ -17,14 +17,37 @@ class Line {
     deltaX = (start.x - end.x).abs();
     deltaY = (start.y - end.y).abs();
   }
-}
 
-class AxialLine extends Line {
-  late bool isHorizontal;
-  late bool isVertical;
+  bool isAxial() {
+    return deltaX == 0 || deltaY == 0;
+  }
 
-  AxialLine.fromString(String s) : super.fromString(s) {
-    isVertical = start.x == end.x;
-    isHorizontal = start.y == end.y;
+  List<Point> pointsCovered() {
+    // hoizontal lines
+    var points = <Point>[];
+    if (deltaY == 0) {
+      for (var i = 0; i <= deltaX; i++) {
+        final d = i * horizontalDirection;
+        points.add(Point(start.x + d, start.y));
+      }
+    }
+    // vertical lines
+    else if (deltaX == 0) {
+      for (var i = 0; i <= deltaY; i++) {
+        final d = i * verticalDirection;
+        points.add(Point(start.x, start.y + d));
+      }
+    }
+    // diagonal lines
+    else if (deltaX == deltaY) {
+      for (var i = 0; i <= deltaY; i++) {
+        final hd = i * horizontalDirection;
+        final vd = i * verticalDirection;
+        points.add(Point(start.x + hd, start.y + vd));
+      }
+    } else {
+      throw StateError("Line is neither axial nor diagonal");
+    }
+    return points;
   }
 }

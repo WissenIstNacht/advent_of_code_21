@@ -37,12 +37,12 @@ void main() {
   test("Line constructor correctly assigns valid input", () {
     final s = "12,3 -> 5,3";
     final t = "12,3 -> 12,14";
-    final p = AxialLine.fromString(s);
-    final q = AxialLine.fromString(t);
+    final p = Line.fromString(s);
+    final q = Line.fromString(t);
 
-    expect(p.isHorizontal, isTrue);
-    expect(p.isVertical, isFalse);
-    expect(q.isHorizontal, isFalse);
-    expect(q.isVertical, isTrue);
+    expect(p.isAxial(), isTrue);
+    expect(p.isAxial(), isTrue);
+    expect(q.isAxial(), isTrue);
+    expect(q.isAxial(), isTrue);
   });
 }

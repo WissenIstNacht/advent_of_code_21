@@ -7,26 +7,26 @@ import '../../../bin/day5/line.dart';
 void main() {
   test('No overlaps', () {
     final grid = Grid.fromDimension(3, 3);
-    final l = AxialLine.fromString("0,0 -> 2,0");
-    grid.markAxialLine(l);
+    final l = Line.fromString("0,0 -> 2,0");
+    grid.markLine(l);
 
     expect(grid.countOverlaps(), equals(0));
   });
   test('One overlap', () {
     final grid = Grid.fromDimension(3, 3);
-    final l = AxialLine.fromString("0,0 -> 0,2");
-    final m = AxialLine.fromString("0,0 -> 2,0");
-    grid.markAxialLine(l);
-    grid.markAxialLine(m);
+    final l = Line.fromString("0,0 -> 0,2");
+    final m = Line.fromString("0,0 -> 2,0");
+    grid.markLine(l);
+    grid.markLine(m);
 
     expect(grid.countOverlaps(), equals(1));
   });
   test('three overlaps', () {
     final grid = Grid.fromDimension(3, 3);
-    final l = AxialLine.fromString("0,0 -> 0,2");
-    final m = AxialLine.fromString("0,0 -> 2,0");
-    grid.markAxialLine(l);
-    grid.markAxialLine(l);
+    final l = Line.fromString("0,0 -> 0,2");
+    final m = Line.fromString("0,0 -> 2,0");
+    grid.markLine(l);
+    grid.markLine(l);
 
     expect(grid.countOverlaps(), equals(3));
   });
@@ -34,9 +34,9 @@ void main() {
     final grid = Grid.fromDimension(10, 10);
     final input = readSampleInput(5);
     final lines = input
-        .map((s) => AxialLine.fromString(s))
-        .where((line) => line.isHorizontal || line.isVertical)
-        .forEach((line) => grid.markAxialLine(line));
+        .map((s) => Line.fromString(s))
+        .where((line) => line.isAxial())
+        .forEach((line) => grid.markLine(line));
     expect(grid.countOverlaps(), equals(5));
   });
 }
