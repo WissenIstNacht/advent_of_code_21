@@ -9,16 +9,17 @@ void main() {
   late Solver solver;
   late List<String> sampleInput;
   setUp(() {
-    sampleInput = readSampleInput(4);
+    sampleInput = readSampleInput(5);
   });
-  test("test d4p1's solve method", () {
+  test("test d5p1's solve method", () {
     solver = Day5Part1();
     final res = solver.solve(sampleInput);
-    expect(res, equals("1"));
+    print(res);
+    expect(res, equals("5"));
   });
-  test("test d4p2's solve method", () {
-    solver = Day5Part2();
-    final res = solver.solve(sampleInput);
-    expect(res, equals("1"));
-  });
+  // test("test d4p2's solve method", () {
+  //   solver = Day5Part2();
+  //   final res = solver.solve(sampleInput);
+  //   expect(res, equals("1"));
+  // });
 }
