@@ -8,7 +8,7 @@ Point findDimensions(Iterable<Line> lines) {
     if (l.start.x > largestX) largestX = l.start.x;
     if (l.end.x > largestX) largestX = l.end.x;
     if (l.start.y > largestY) largestY = l.start.y;
-    if (l.start.y > largestY) largestY = l.start.y;
+    if (l.end.y > largestY) largestY = l.end.y;
   });
 
   // since points are 0-indexed, corresponding dimensions will be one larger.
