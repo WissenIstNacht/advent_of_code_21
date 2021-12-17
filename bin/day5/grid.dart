@@ -26,6 +26,16 @@ class Grid {
     }
   }
 
+  int countOverlaps() {
+    var count = 0;
+    for (var row in cells) {
+      for (var cell in row) {
+        if (cell.lineCount >= 2) count++;
+      }
+    }
+    return count;
+  }
+
   List<List<int>> toInts() {
     return cells.map((row) => row.map((c) => c.lineCount).toList()).toList();
   }
