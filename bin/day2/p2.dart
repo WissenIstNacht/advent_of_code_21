@@ -1,7 +1,7 @@
 import 'package:advent_of_code_21/solver.dart';
 
-import 'instruction.dart';
-import 'position.dart';
+import 'helpers/instruction.dart';
+import 'helpers/position.dart';
 
 class Day2Part2 extends Solver {
   Day2Part2() : super(2);
