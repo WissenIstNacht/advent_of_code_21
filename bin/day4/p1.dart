@@ -1,6 +1,6 @@
 import 'package:advent_of_code_21/solver.dart';
 
-import 'bingo.dart';
+import 'helpers/bingo.dart';
 
 // Rules of Bingo:
 //  Player has at least one 5x5 borad with numbers.

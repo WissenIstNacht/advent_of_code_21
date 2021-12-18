@@ -1,7 +1,7 @@
 import 'package:advent_of_code_21/utils.dart';
 import 'package:test/test.dart';
 
-import '../../../bin/day4/board.dart';
+import '../../../bin/day4/helpers/board.dart';
 
 void main() {
   late List<String> correctBoard, faultyRows, faultyCols;
