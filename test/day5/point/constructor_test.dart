@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import '../../../bin/day5/point.dart';
+import '../../../bin/day5/helpers/point.dart';
 
 void main() {
   test('Point constructor succeed on valid input', () {

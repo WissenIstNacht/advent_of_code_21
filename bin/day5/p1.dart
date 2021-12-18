@@ -1,8 +1,8 @@
 import 'package:advent_of_code_21/solver.dart';
 
-import 'grid.dart';
-import 'line.dart';
-import 'utils.dart';
+import 'helpers/grid.dart';
+import 'helpers/line.dart';
+import 'helpers/utils.dart';
 
 class Day5Part1 extends Solver {
   Day5Part1() : super(5);

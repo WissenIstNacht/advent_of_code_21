@@ -1,8 +1,8 @@
 import 'package:advent_of_code_21/utils.dart';
 import 'package:test/test.dart';
 
-import '../../../bin/day5/grid.dart';
-import '../../../bin/day5/line.dart';
+import '../../../bin/day5/helpers/grid.dart';
+import '../../../bin/day5/helpers/line.dart';
 
 void main() {
   test('Marking a horizontal line', () {

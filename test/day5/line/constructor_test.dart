@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import '../../../bin/day5/line.dart';
+import '../../../bin/day5/helpers/line.dart';
 
 void main() {
   test('Line constructor succeed on valid input', () {
