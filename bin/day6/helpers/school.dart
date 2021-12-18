@@ -12,12 +12,17 @@ class School {
     age++;
     final newFishes = <Fish>[];
     for (var fish in fishes) {
-      fish.age();
       if (fish.canReproduce()) {
         final newFish = fish.reproduce();
         newFishes.add(newFish);
       }
+      fish.age();
     }
     fishes.addAll(newFishes);
   }
+
+  int countPopulation() => fishes.length;
+
+  List<int> printPopulationAges() =>
+      fishes.map((f) => f.daysToReproduce).toList();
 }
