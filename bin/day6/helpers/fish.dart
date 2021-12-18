@@ -5,12 +5,18 @@ class Fish {
 
   Fish.withOffset(this.daysToReproduce);
 
-  void age() => daysToReproduce--;
+  void age() {
+    var newDays = daysToReproduce - 1;
+    if (newDays < 0) {
+      daysToReproduce = 6;
+    } else {
+      daysToReproduce = daysToReproduce = newDays;
+    }
+  }
 
   bool canReproduce() => daysToReproduce == 0;
 
   Fish reproduce() {
-    daysToReproduce = 6;
     return Fish();
   }
 }
