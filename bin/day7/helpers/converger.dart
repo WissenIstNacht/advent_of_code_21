@@ -1,15 +1,15 @@
 class Converger {
   int fuel = 0;
   late List<int> positionCount;
-  late int hi, lo;
+  int lo = 0;
+  late int hi;
 
   Converger.fromPositions(List<int> positions) {
     positions.sort();
 
-    lo = 0;
+    // TODO improve  on by removing unused lower parts of array
     hi = positions.last;
-
-    positionCount = List.filled(hi, 0);
+    positionCount = List.filled(hi + 1, 0);
 
     for (var position in positions) {
       positionCount[position]++;
