@@ -13,7 +13,7 @@ class Day6Part2 extends Solver {
       repoducableCount[i]++;
     });
 
-    effectiveCount[0] = 5;
+    effectiveCount[0] = repoducableCount.reduce((a, b) => a + b);
     for (var i = 0; i <= totalDays; i++) {
       repoducableCount[i + 7] += repoducableCount[i];
       repoducableCount[i + 9] += repoducableCount[i];
