@@ -5,7 +5,7 @@ class Day6Part2 extends Solver {
 
   @override
   String solve(List<String> input) {
-    final totalDays = 80;
+    final totalDays = 256;
     final effectiveCount = List.filled(totalDays + 10, 0);
     final repoducableCount = List.filled(totalDays + 10, 0);
 

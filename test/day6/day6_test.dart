@@ -16,9 +16,9 @@ void main() {
     final res = solver.solve(sampleInput);
     expect(res, equals("5934"));
   });
-  // test("test d6p2's solve method", () {
-  //   solver = Day6Part2();
-  //   final res = solver.solve(sampleInput);
-  //   expect(res, equals("12"));
-  // });
+  test("test d6p2's solve method", () {
+    solver = Day6Part2();
+    final res = solver.solve(sampleInput);
+    expect(res, equals("26984457539"));
+  });
 }
