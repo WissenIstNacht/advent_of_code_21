@@ -5,6 +5,21 @@ class Day6Part2 extends Solver {
 
   @override
   String solve(List<String> input) {
-    return "6-2";
+    final totalDays = 80;
+    final effectiveCount = List.filled(totalDays + 10, 0);
+    final repoducableCount = List.filled(totalDays + 10, 0);
+
+    input[0].split(",").map((s) => int.parse(s)).forEach((i) {
+      repoducableCount[i]++;
+    });
+
+    effectiveCount[0] = 5;
+    for (var i = 0; i <= totalDays; i++) {
+      repoducableCount[i + 7] += repoducableCount[i];
+      repoducableCount[i + 9] += repoducableCount[i];
+      effectiveCount[i + 1] += effectiveCount[i] + repoducableCount[i];
+    }
+
+    return effectiveCount[totalDays].toString();
   }
 }
