@@ -14,7 +14,7 @@ void main() {
   test("test d7p1's solve method", () {
     solver = Day7Part1();
     final res = solver.solve(sampleInput);
-    expect(res, equals("1"));
+    expect(res, equals("37"));
   });
   // test("test d7p2's solve method", () {
   //   solver = Day7Part2();
