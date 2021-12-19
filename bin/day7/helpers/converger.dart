@@ -15,4 +15,20 @@ class Converger {
       positionCount[position]++;
     }
   }
+
+  bool hasConverged() => hi == lo;
+
+  void converge() {
+    if (positionCount[lo] < positionCount[hi]) {
+      positionCount[hi - 1] = positionCount[hi];
+      fuel += positionCount[hi];
+      hi--;
+    } else if (positionCount[lo] > positionCount[hi]) {
+      positionCount[lo + 1] = positionCount[lo];
+      fuel += positionCount[lo];
+      lo--;
+    } else {
+      throw StateError("Outter position have equal amount of members");
+    }
+  }
 }
