@@ -16,9 +16,9 @@ void main() {
     final res = solver.solve(sampleInput);
     expect(res, equals("37"));
   });
-  // test("test d7p2's solve method", () {
-  //   solver = Day7Part2();
-  //   final res = solver.solve(sampleInput);
-  //   expect(res, equals("2"));
-  // });
+  test("test d7p2's solve method", () {
+    solver = Day7Part2();
+    final res = solver.solve(sampleInput);
+    expect(res, equals("168"));
+  });
 }
