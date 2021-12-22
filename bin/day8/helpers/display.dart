@@ -82,8 +82,9 @@ class Display {
   }
 
   int decodeOutputs() {
-    return outputs
-        .map((s) => decoder[s] ?? 123456)
-        .reduce((aggr, elem) => (aggr * 10 + elem));
+    return outputs.map((s) {
+      final key = decoder.keys.firstWhere((k) => covers(k, s) && covers(s, k));
+      return decoder[key] ?? 8979487239487;
+    }).reduce((aggr, elem) => (aggr * 10 + elem));
   }
 }

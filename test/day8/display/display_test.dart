@@ -36,7 +36,7 @@ void main() {
     final d = Display.parse(miniInput);
     expect(d.unionFiveOne('cdfbe', "ab"), "cdfbea");
   });
-  test('Properly decodes inputs from first display', () {
+  test('Properly decodes inputs from mini sample display', () {
     final d = Display.parse(miniInput);
     d.decodeInputs();
     expect(d.decoder[d.inputs[0]], equals(8));
@@ -49,5 +49,17 @@ void main() {
     expect(d.decoder[d.inputs[7]], equals(4));
     expect(d.decoder[d.inputs[8]], equals(0));
     expect(d.decoder[d.inputs[9]], equals(1));
+  });
+  test('Properly decodes outputs from mini sample display', () {
+    final d = Display.parse(miniInput);
+    d.decodeInputs();
+    final res = d.decodeOutputs();
+    expect(res, equals(5353));
+  });
+  test('Properly decodes outputs from sample display', () {
+    final d = Display.parse(sampleInput.first);
+    d.decodeInputs();
+    final res = d.decodeOutputs();
+    expect(res, equals(8394));
   });
 }
