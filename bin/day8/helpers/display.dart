@@ -6,7 +6,6 @@ class Display {
   Display.parse(String s) {
     final parts = s.split(" | ");
     inputs = parts.first.split(" ");
-    inputs.sort((a, b) => a.length.compareTo(b.length));
     outputs = parts.last.split(" ");
   }
 
@@ -26,7 +25,7 @@ class Display {
           decoder[input] = 4;
           break;
         case 7:
-          decoder[input] = 0;
+          decoder[input] = 8;
           break;
         case 5:
           fivers.add(input);
@@ -56,8 +55,8 @@ class Display {
     decoder[no9] = 9;
 
     final no5 = fivers.firstWhere((s) {
-      final unionOneFive = unionFiveOne(s);
-      return covers(unionOneFive, s) && covers(s, unionOneFive);
+      final unionOneFive = unionFiveOne(s, no1);
+      return covers(unionOneFive, no9) && covers(no9, unionOneFive);
     });
     decoder[no5] = 5;
     fivers.remove(no5);
