@@ -82,7 +82,8 @@ class Display {
   }
 
   int decodeOutputs() {
-    // add digits that are uniquely identified by their length
-    return 42;
+    return outputs
+        .map((s) => decoder[s] ?? 123456)
+        .reduce((aggr, elem) => (aggr * 10 + elem));
   }
 }
