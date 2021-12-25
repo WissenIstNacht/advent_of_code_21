@@ -14,11 +14,11 @@ void main() {
   test("test d9p1's solve method", () {
     solver = Day9Part1();
     final res = solver.solve(sampleInput);
-    expect(res, equals("26"));
+    expect(res, equals("15"));
   });
-  test("test d9p2's solve method", () {
-    solver = Day9Part2();
-    final res = solver.solve(sampleInput);
-    expect(res, equals("61229"));
-  });
+  // test("test d9p2's solve method", () {
+  //   solver = Day9Part2();
+  //   final res = solver.solve(sampleInput);
+  //   expect(res, equals("61229"));
+  // });
 }
