@@ -1,4 +1,6 @@
 class Grid<T> {
+  /* LATE VARS ===================================================== */
+
   late int width, height;
   late List<List<T>> cells;
 

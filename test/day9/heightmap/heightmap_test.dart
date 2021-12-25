@@ -9,6 +9,7 @@ void main() {
   test('Properly constructs from sample input', () {
     final hm = HeightMap.parse(sampleInput);
     final ints = hm.map<int>((Cell e) => e.content);
+    print(ints);
     expect(
         ints,
         equals([

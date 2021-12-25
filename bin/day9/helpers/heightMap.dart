@@ -1,23 +1,22 @@
+import 'package:advent_of_code_21/grid/grid.dart';
+
 import 'cell.dart';
 
-class HeightMap {
-  late int width, height;
-  late List<List<Cell>> heights;
+class HeightMap extends Grid<Cell> {
+  /* CONSTRUCTOR ============================================================ */
 
   HeightMap.parse(List<String> lines) {
     height = lines.length;
     width = lines.first.length;
 
-    heights = [];
+    cells = [];
     for (var line in lines) {
       final parsedLine = line.split("").map((s) => Cell.parse(s)).toList();
-      heights.add(parsedLine);
+      cells.add(parsedLine);
     }
   }
 
-  Cell getCell(int x, int y) => heights[y][x];
-
-  bool outOfGrid(int x, int y) => x < 0 || x >= width || y < 0 || y >= height;
+  /* QUERIES ================================================================ */
 
   List<Cell> getNeighbours(int x, int y) {
     if (outOfGrid(x, y)) throw ArgumentError("Arguments are out of bounds");
@@ -107,9 +106,5 @@ class HeightMap {
     } while (true);
 
     return basin;
-  }
-
-  List<List<T>> map<T>(T Function(Cell) f) {
-    return heights.map((List<Cell> r) => r.map(f).toList()).toList();
   }
 }
