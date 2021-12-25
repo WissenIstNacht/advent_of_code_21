@@ -25,29 +25,29 @@ void main() {
     final hm = HeightMap.parse(sampleInput);
 
     var neighbours = hm.getNeighbours(0, 0).map((e) => e.content);
-    expect(neighbours, equals([3, 1]));
+    expect(neighbours, equals([1, 3]));
 
     neighbours = hm.getNeighbours(1, 0).map((e) => e.content);
     expect(neighbours, equals([2, 9, 9]));
 
-    neighbours = hm.getNeighbours(0, 2).map((e) => e.content);
-    expect(neighbours, equals([1, 8, 9]));
+    neighbours = hm.getNeighbours(2, 0).map((e) => e.content);
+    expect(neighbours, equals([1, 9, 8]));
 
     neighbours = hm.getNeighbours(1, 1).map((e) => e.content);
-    expect(neighbours, equals([1, 3, 8, 8]));
+    expect(neighbours, equals([3, 1, 8, 8]));
 
-    neighbours = hm.getNeighbours(0, 9).map((e) => e.content);
+    neighbours = hm.getNeighbours(9, 0).map((e) => e.content);
     expect(neighbours, equals([1, 1]));
   });
   test('lowPoint identifies low points correctly', () {
     final hm = HeightMap.parse(sampleInput);
-    final v1 = hm.heights[0][0].content;
-    final v2 = hm.heights[0][9].content;
+    final v1 = hm.getCell(0, 0).content;
+    final v2 = hm.getCell(9, 0).content;
 
     var neighbours = hm.getNeighbours(0, 0);
     expect(hm.isLowPoint(v1, neighbours), isFalse);
 
-    neighbours = hm.getNeighbours(0, 9);
+    neighbours = hm.getNeighbours(9, 0);
     expect(hm.isLowPoint(v2, neighbours), isTrue);
   });
   test('get all low points', () {
@@ -55,5 +55,18 @@ void main() {
     final points = hm.findLowPoints().map((e) => e.content);
     expect(points, equals([1, 0, 5, 5]));
   });
+  test('get basin for first low point in sample', () {
+    final hm = HeightMap.parse(sampleInput);
+    final lp = hm.findLowPoints();
+    var p = lp.first;
+    var b = hm.findBasin(p);
+    expect(b.map((e) => e.content), equals([1, 2, 3]));
+    p = lp[1];
+    b = hm.findBasin(p);
+    expect(b.map((e) => e.content), equals([0, 1, 2, 3, 4, 4, 2, 1, 2]));
+    p = lp[2];
+    b = hm.findBasin(p);
+    expect(b.map((e) => e.content),
+        equals([5, 6, 7, 8, 8, 7, 8, 8, 7, 6, 7, 8, 8, 8]));
   });
 }

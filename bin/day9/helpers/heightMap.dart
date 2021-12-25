@@ -1,4 +1,5 @@
 import 'cell.dart';
+import 'dart:developer';
 
 class HeightMap {
   late int width, height;
@@ -15,32 +16,34 @@ class HeightMap {
     }
   }
 
-  bool outOfGrid(int x, int y) => x < 0 || x >= height || y < 0 || y >= width;
+  Cell getCell(int x, int y) => heights[y][x];
+
+  bool outOfGrid(int x, int y) => x < 0 || x >= width || y < 0 || y >= height;
 
   List<Cell> getNeighbours(int x, int y) {
     if (outOfGrid(x, y)) throw ArgumentError("Arguments are out of bounds");
 
     final neighbours = <Cell>[];
     if (x - 1 >= 0) {
-      final hc = heights[x - 1][y];
+      final hc = getCell(x - 1, y);
       hc.x = x - 1;
       hc.y = y;
       neighbours.add(hc);
     }
     if (y - 1 >= 0) {
-      final hc = heights[x][y - 1];
+      final hc = getCell(x, y - 1);
       hc.x = x;
       hc.y = y - 1;
       neighbours.add(hc);
     }
-    if (x + 1 < height) {
-      final hc = heights[x + 1][y];
+    if (x + 1 < width) {
+      final hc = getCell(x + 1, y);
       hc.x = x + 1;
       hc.y = y;
       neighbours.add(hc);
     }
-    if (y + 1 < width) {
-      final hc = heights[x][y + 1];
+    if (y + 1 < height) {
+      final hc = getCell(x, y + 1);
       hc.x = x;
       hc.y = y + 1;
       neighbours.add(hc);
@@ -56,8 +59,8 @@ class HeightMap {
     final lows = <Cell>[];
     for (var i = 0; i < height; i++) {
       for (var j = 0; j < width; j++) {
-        final currCell = heights[i][j];
-        final neighbours = getNeighbours(i, j);
+        final currCell = getCell(j, i);
+        final neighbours = getNeighbours(j, i);
         if (isLowPoint(currCell.content, neighbours)) lows.add(currCell);
       }
     }
@@ -66,32 +69,42 @@ class HeightMap {
 
   List<Cell> findBasin(Cell lowPoint) {
     var curr = lowPoint;
-    var next;
-    var backtrackCounter = 0;
+    final backtracker = <Cell>[];
+    final basin = <Cell>[];
 
     Cell getNext() {
-      if (curr.x < width - 1 && !heights[curr.y][curr.x + 1].marked) {
-        return heights[curr.y][curr.x + 1];
-      } else if (curr.y > 0 && !heights[curr.y - 1][curr.x].marked) {
-        return heights[curr.y - 1][curr.x];
-      } else if (curr.x > 0 && !heights[curr.y][curr.x - 1].marked) {
-        return heights[curr.y][curr.x - 1];
-      } else if (curr.y < height - 1 && !heights[curr.y + 1][curr.x].marked) {
-        return heights[curr.y + 1][curr.x];
+      if (curr.x < width - 1 && !getCell(curr.x + 1, curr.y).marked) {
+        return getCell(curr.x + 1, curr.y);
+      }
+      if (curr.y > 0 && !getCell(curr.x, curr.y - 1).marked) {
+        return getCell(curr.x, curr.y - 1);
+      }
+      if (curr.x > 0 && !getCell(curr.x - 1, curr.y).marked) {
+        return getCell(curr.x - 1, curr.y);
+      }
+      if (curr.y < height - 1 && !getCell(curr.x, curr.y + 1).marked) {
+        return getCell(curr.x, curr.y + 1);
       }
       return curr;
     }
 
-    final basin = <Cell>[];
     do {
-      curr.marked = true;
-      basin.add(curr);
-      next = getNext();
-      if (next == curr) {
-        backtrackCounter++;
-        next = basin[basin.length - backtrackCounter];
+      if (!curr.marked) {
+        curr.marked = true;
+        basin.add(curr);
       }
-      curr = next;
+      final next = getNext();
+
+      if (curr == next) {
+        if (backtracker.isEmpty) {
+          break;
+        } else {
+          curr = backtracker.removeLast();
+        }
+      } else {
+        backtracker.add(curr);
+        curr = next;
+      }
     } while (curr != lowPoint);
 
     return basin;
