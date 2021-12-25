@@ -96,4 +96,8 @@ class HeightMap {
 
     return basin;
   }
+
+  List<List<T>> map<T>(T Function(Cell) f) {
+    return heights.map((List<Cell> r) => r.map(f).toList()).toList();
+  }
 }
