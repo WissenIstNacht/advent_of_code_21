@@ -1,8 +1,12 @@
 import 'board.dart';
 
 class Bingo {
+  /* LATE VARS ============================================================== */
+
   late Iterator<int> numbers;
   late List<Board> boards;
+
+  /* CONSTRUCTORS =========================================================== */
 
   Bingo.fromInput(List<String> input) {
     final picks = input.first;
@@ -11,7 +15,7 @@ class Bingo {
     var i = 2;
     var newBoards = <Board>[];
     while (i < input.length) {
-      final boardLines = input.getRange(i, i + 5);
+      final boardLines = input.getRange(i, i + 5).toList();
       newBoards.add(Board.fromLines(boardLines));
       i += 6;
     }
@@ -20,6 +24,14 @@ class Bingo {
     }
     boards = newBoards;
   }
+
+  /* QUERIES ================================================================ */
+
+  List<Board> hasWinningBoards() {
+    return boards.where((b) => b.hasWon()).toList();
+  }
+
+  /* ACTIONS ================================================================ */
 
   int pickNumber() {
     if (!numbers.moveNext()) {
@@ -33,10 +45,6 @@ class Bingo {
       final c = board.contains(numberPicked);
       c?.marked = true;
     }
-  }
-
-  List<Board> hasWinningBoards() {
-    return boards.where((b) => b.hasWon()).toList();
   }
 
   void removeBoard(Board board) {

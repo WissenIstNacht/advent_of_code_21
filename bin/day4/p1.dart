@@ -32,7 +32,7 @@ class Day4Part1 extends Solver {
       game.updateBoards(currPick);
       final winner = game.hasWinningBoards();
       if (winner.isNotEmpty) {
-        return (winner.first.score() * currPick).toString();
+        return (winner.first.getScore() * currPick).toString();
       }
     }
   }

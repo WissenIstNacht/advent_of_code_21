@@ -11,7 +11,7 @@ void main() {
   });
   test("No fields marked", () {
     board = Board.fromLines(input);
-    expect(board.score(), 300);
+    expect(board.getScore(), 300);
   });
   test("All fields marked", () {
     board = Board.fromLines(input);
@@ -20,17 +20,17 @@ void main() {
         cell.marked = true;
       }
     }
-    expect(board.score(), 0);
+    expect(board.getScore(), 0);
   });
   test("First line all marked", () {
     board = Board.fromLines(input);
     board.cells.first.forEach((c) => c.marked = true);
-    expect(board.score(), 237);
+    expect(board.getScore(), 237);
   });
   test("First column marked", () {
     board = Board.fromLines(input);
     final firstInRow = board.cells.map((r) => r.first);
     firstInRow.forEach((c) => c.marked = true);
-    expect(board.score(), 242);
+    expect(board.getScore(), 242);
   });
 }

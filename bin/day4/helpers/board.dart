@@ -1,15 +1,16 @@
+import 'package:advent_of_code_21/grid/grid.dart';
 import 'package:collection/collection.dart';
 
 import 'cell.dart';
 
-class Board {
-  late List<List<Cell>> cells;
+class Board extends Grid<Cell> {
+  /* CONSTRUCTORS =========================================================== */
 
-  Board.fromLines(Iterable<String> lines) {
+  Board.fromLines(List<String> lines) {
     if (lines.length != 5) {
       throw ArgumentError("Board input does not have 5 rows");
     }
-    final cols = <List<Cell>>[];
+    cells = [];
     for (var s in lines) {
       final exp = RegExp("\\s+");
       final numbers = s.trim().split(exp);
@@ -19,13 +20,13 @@ class Board {
             "Board input has a row that does not have 5 columns");
       }
       final row = numbers.map((s) => Cell.fromString(s)).toList();
-      cols.add(row);
+      cells.add(row);
     }
-    cells = cols;
   }
 
-  // QUERIES ===================================================================
+  /* QUERIES ================================================================ */
 
+  // TODO extract this to grid
   Cell? contains(int n) {
     for (var row in cells) {
       final c = row.firstWhereOrNull((c) => c.number == n);
@@ -46,7 +47,7 @@ class Board {
     return fullColumns.any((c) => c);
   }
 
-  int score() {
+  int getScore() {
     var score = 0;
     for (var row in cells) {
       for (var cell in row) {

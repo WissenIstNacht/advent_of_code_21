@@ -25,6 +25,6 @@ class Day4Part2 extends Solver {
       }
     }
     final lastBoard = winners.last;
-    return (lastBoard.score() * currPick).toString();
+    return (lastBoard.getScore() * currPick).toString();
   }
 }

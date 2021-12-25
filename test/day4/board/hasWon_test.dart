@@ -39,11 +39,11 @@ void main() {
     firstInRow.forEach((c) => c.marked = true);
     expect(board.hasWon(), isTrue);
   });
-  test("First column marked", () {
+  test("First column one cell not marked", () {
     board = Board.fromLines(input);
     final firstInRow = board.cells.map((r) => r.first);
     firstInRow.forEach((c) => c.marked = true);
     board.cells.first.first.marked = false;
-    expect(board.hasWon(), isTrue);
+    expect(board.hasWon(), isFalse);
   });
 }
