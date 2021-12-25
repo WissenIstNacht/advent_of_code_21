@@ -63,4 +63,37 @@ class HeightMap {
     }
     return lows;
   }
+
+  List<Cell> findBasin(Cell lowPoint) {
+    var curr = lowPoint;
+    var next;
+    var backtrackCounter = 0;
+
+    Cell getNext() {
+      if (curr.x < width - 1 && !heights[curr.y][curr.x + 1].marked) {
+        return heights[curr.y][curr.x + 1];
+      } else if (curr.y > 0 && !heights[curr.y - 1][curr.x].marked) {
+        return heights[curr.y - 1][curr.x];
+      } else if (curr.x > 0 && !heights[curr.y][curr.x - 1].marked) {
+        return heights[curr.y][curr.x - 1];
+      } else if (curr.y < height - 1 && !heights[curr.y + 1][curr.x].marked) {
+        return heights[curr.y + 1][curr.x];
+      }
+      return curr;
+    }
+
+    final basin = <Cell>[];
+    do {
+      curr.marked = true;
+      basin.add(curr);
+      next = getNext();
+      if (next == curr) {
+        backtrackCounter++;
+        next = basin[basin.length - backtrackCounter];
+      }
+      curr = next;
+    } while (curr != lowPoint);
+
+    return basin;
+  }
 }

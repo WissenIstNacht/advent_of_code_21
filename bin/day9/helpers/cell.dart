@@ -6,6 +6,6 @@ class Cell with Markable, Positionable {
 
   Cell.parse(String s) {
     content = int.parse(s);
-    marked = false;
+    marked = content == 9 ? true : false;
   }
 }
