@@ -9,7 +9,7 @@ class Day9Part1 extends Solver {
   String solve(List<String> input) {
     final heightMap = HeightMap.parse(input);
     final points = heightMap.findLowPoints();
-    final res = points.map((p) => p += 1).reduce((a, b) => a + b);
+    final res = points.map((p) => p.content += 1).reduce((a, b) => a + b);
 
     return res.toString();
   }
