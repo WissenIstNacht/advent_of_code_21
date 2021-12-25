@@ -68,5 +68,8 @@ void main() {
     b = hm.findBasin(p);
     expect(b.map((e) => e.content),
         equals([5, 6, 7, 8, 8, 7, 8, 8, 7, 6, 7, 8, 8, 8]));
+    p = lp[3];
+    b = hm.findBasin(p);
+    expect(b.map((e) => e.content), equals([5, 6, 7, 8, 8, 7, 8, 6, 6]));
   });
 }

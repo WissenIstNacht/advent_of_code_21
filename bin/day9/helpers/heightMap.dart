@@ -105,7 +105,7 @@ class HeightMap {
         backtracker.add(curr);
         curr = next;
       }
-    } while (curr != lowPoint);
+    } while (true);
 
     return basin;
   }
