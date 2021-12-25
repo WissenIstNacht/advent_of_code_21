@@ -7,7 +7,7 @@ class Converger {
   Converger.fromPositions(List<int> positions) {
     positions.sort();
 
-    // TODO improve  on by removing unused lower parts of array
+    // TODO improve by removing unused lower parts of array
     hi = positions.last;
     positionCount = List.filled(hi + 1, 0);
 

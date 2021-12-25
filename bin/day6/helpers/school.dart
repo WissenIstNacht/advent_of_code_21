@@ -23,6 +23,6 @@ class School {
 
   int countPopulation() => fishes.length;
 
-  List<int> printPopulationAges() =>
+  List<int> getPopulationAges() =>
       fishes.map((f) => f.daysToReproduce).toList();
 }

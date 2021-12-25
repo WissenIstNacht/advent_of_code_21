@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 import 'board.dart';
 
 class Bingo {

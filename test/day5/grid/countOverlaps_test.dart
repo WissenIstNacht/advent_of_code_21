@@ -24,7 +24,6 @@ void main() {
   test('three overlaps', () {
     final grid = Grid.fromDimension(3, 3);
     final l = Line.fromString("0,0 -> 0,2");
-    final m = Line.fromString("0,0 -> 2,0");
     grid.markLine(l);
     grid.markLine(l);
 
@@ -33,7 +32,7 @@ void main() {
   test('Marking on sample input', () {
     final grid = Grid.fromDimension(10, 10);
     final input = readSampleInput(5);
-    final lines = input
+    input
         .map((s) => Line.fromString(s))
         .where((line) => line.isAxial())
         .forEach((line) => grid.markLine(line));

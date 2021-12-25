@@ -1,5 +1,4 @@
 import 'cell.dart';
-import 'dart:developer';
 
 class HeightMap {
   late int width, height;

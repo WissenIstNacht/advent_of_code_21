@@ -16,10 +16,10 @@ void main() {
     s.evolve();
     expect(s.age, equals(1));
     expect(s.countPopulation(), equals(c));
-    expect(s.printPopulationAges(), equals([0, 1, 2, 3, 4, 5]));
+    expect(s.getPopulationAges(), equals([0, 1, 2, 3, 4, 5]));
     s.evolve();
     expect(s.age, equals(2));
     expect(s.countPopulation(), equals(c + 1));
-    expect(s.printPopulationAges(), equals([6, 0, 1, 2, 3, 4, 8]));
+    expect(s.getPopulationAges(), equals([6, 0, 1, 2, 3, 4, 8]));
   });
 }

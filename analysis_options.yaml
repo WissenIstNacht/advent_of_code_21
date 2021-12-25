@@ -4,6 +4,8 @@ linter:
   rules:
     prefer_single_quotes: false
     camel_case_types: true
-# analyzer:
+analyzer:
+  errors:
+    todo: ignore
 #   exclude:
 #     - path/to/excluded/files/**
