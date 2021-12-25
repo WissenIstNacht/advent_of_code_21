@@ -20,8 +20,8 @@ class HeightMap {
     final neighbours = <int>[];
     if (x - 1 >= 0) neighbours.add(heights[x - 1][y]);
     if (y - 1 >= 0) neighbours.add(heights[x][y - 1]);
-    if (x + 1 < width) neighbours.add(heights[x + 1][y]);
-    if (y + 1 < height) neighbours.add(heights[x][y + 1]);
+    if (x + 1 < height) neighbours.add(heights[x + 1][y]);
+    if (y + 1 < width) neighbours.add(heights[x][y + 1]);
 
     return neighbours;
   }
