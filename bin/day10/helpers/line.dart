@@ -14,15 +14,19 @@ class Line {
     tokens = line.split("").map((s) => Token(s)).toList();
   }
 
+  /* QUERIES ================================================================ */
+
+  bool isCorrupted() => state == Status.corrupted;
+
   /* ACTIONS ================================================================ */
 
-  void analyzeCorruptedLine(String line) {
+  void analyzeLine() {
     for (var token in tokens) {
       if (token.isOpen()) {
         stack.add(token);
       } else {
         final lastOpener = stack.removeLast();
-        if (lastOpener.value != token.value) {
+        if (!token.matchesOpenToken(lastOpener)) {
           illegalCharacter = token.value;
           state = Status.corrupted;
           return;
