@@ -36,7 +36,7 @@ class Line {
     state = Status.incomplete;
   }
 
-  void complete() {
-    stack.reversed.map((t) => t.match()).toList();
+  List<Token> complete() {
+    return stack.reversed.map((t) => t.match()).toList();
   }
 }
