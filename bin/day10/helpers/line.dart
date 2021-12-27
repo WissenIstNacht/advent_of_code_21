@@ -18,6 +18,10 @@ class Line {
 
   bool isCorrupted() => state == Status.corrupted;
 
+  List<Token> getCompletion() {
+    return stack.reversed.map((t) => t.match()).toList();
+  }
+
   /* ACTIONS ================================================================ */
 
   void analyze() {
@@ -34,9 +38,5 @@ class Line {
       }
     }
     state = Status.incomplete;
-  }
-
-  List<Token> complete() {
-    return stack.reversed.map((t) => t.match()).toList();
   }
 }

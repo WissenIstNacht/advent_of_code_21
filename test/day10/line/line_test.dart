@@ -49,12 +49,12 @@ void main() {
   test('lowPoint identifies low points correctly', () {
     var l = Line.parse(sampleInput[0]);
     l.analyze();
-    var completion = l.complete().map((t) => t.value).toList();
+    var completion = l.getCompletion().map((t) => t.value).toList();
     expect(completion, ["}", "}", "]", "]", ")", "}", ")", "]"]);
 
     l = Line.parse(sampleInput[6]);
     l.analyze();
-    completion = l.complete().map((t) => t.value).toList();
+    completion = l.getCompletion().map((t) => t.value).toList();
     expect(completion, ["]", "]", "}", "}", "]", "}", "]", "}", ">"]);
   });
 }
