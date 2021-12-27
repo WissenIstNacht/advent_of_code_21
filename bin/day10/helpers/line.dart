@@ -18,6 +18,20 @@ class Line {
 
   bool isCorrupted() => state == Status.corrupted;
 
+  int errorValue() {
+    if (illegalCharacter == ")") {
+      return 3;
+    } else if (illegalCharacter == "]") {
+      return 57;
+    } else if (illegalCharacter == "}") {
+      return 1197;
+    } else if (illegalCharacter == ">") {
+      return 25137;
+    } else {
+      return 0;
+    }
+  }
+
   /* ACTIONS ================================================================ */
 
   void analyzeLine() {
