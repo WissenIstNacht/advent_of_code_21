@@ -35,5 +35,8 @@ class Line {
     }
     state = Status.incomplete;
   }
+
+  void complete() {
+    stack.reversed.map((t) => t.match()).toList();
   }
 }

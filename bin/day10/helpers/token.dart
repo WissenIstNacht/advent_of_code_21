@@ -39,4 +39,33 @@ class Token {
     }
   }
 
+  int completionValue() {
+    if (value == ")") {
+      return 1;
+    } else if (value == "]") {
+      return 2;
+    } else if (value == "}") {
+      return 3;
+    } else if (value == ">") {
+      return 4;
+    } else {
+      return 0;
+    }
+  }
+
+  /* ACTIONS ================================================================ */
+
+  Token match() {
+    if (value == "(") {
+      return Token(")");
+    } else if (value == "{") {
+      return Token("}");
+    } else if (value == "[") {
+      return Token("]");
+    } else if (value == "<") {
+      return Token(">");
+    } else {
+      throw StateError("This token is not an opening Token");
+    }
+  }
 }
