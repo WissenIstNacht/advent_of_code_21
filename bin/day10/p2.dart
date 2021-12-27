@@ -13,8 +13,9 @@ class Day10Part2 extends Solver {
         .where((l) => !l.isCorrupted())
         .map((l) => l.getCompletion())
         .map((completion) {
-      int folder(int elem, int curr) => curr * 5 + elem;
-      completion.map((t) => t.completionValue()).fold(0, folder);
+      print(completion);
+      int folder(int curr, int elem) => curr * 5 + elem;
+      return completion.map((t) => t.completionValue()).fold(0, folder);
     }).toList();
     scores.sort();
 

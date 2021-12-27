@@ -49,7 +49,7 @@ class Token {
     } else if (value == ">") {
       return 4;
     } else {
-      return 0;
+      throw StateError("This token is not a closing token");
     }
   }
 
