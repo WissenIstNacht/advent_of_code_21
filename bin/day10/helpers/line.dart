@@ -5,7 +5,7 @@ class Line {
   late List<Token> tokens;
 
   List<Token> stack = [];
-  String illegalCharacter = "";
+  Token? illegalCharacter;
   Status state = Status.unknown;
 
   /* CONSTRUCTORS =========================================================== */
@@ -18,34 +18,22 @@ class Line {
 
   bool isCorrupted() => state == Status.corrupted;
 
-  int errorValue() {
-    if (illegalCharacter == ")") {
-      return 3;
-    } else if (illegalCharacter == "]") {
-      return 57;
-    } else if (illegalCharacter == "}") {
-      return 1197;
-    } else if (illegalCharacter == ">") {
-      return 25137;
-    } else {
-      return 0;
-    }
-  }
-
   /* ACTIONS ================================================================ */
 
-  void analyzeLine() {
+  void analyze() {
     for (var token in tokens) {
       if (token.isOpen()) {
         stack.add(token);
       } else {
         final lastOpener = stack.removeLast();
         if (!token.matchesOpenToken(lastOpener)) {
-          illegalCharacter = token.value;
+          illegalCharacter = token;
           state = Status.corrupted;
           return;
         }
       }
     }
+    state = Status.incomplete;
+  }
   }
 }

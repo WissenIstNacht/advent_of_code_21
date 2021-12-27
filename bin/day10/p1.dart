@@ -10,8 +10,8 @@ class Day10Part1 extends Solver {
     final lines = input.map((l) => Line.parse(l)).toList();
     var errorScore = 0;
     for (var line in lines) {
-      line.analyzeLine();
-      errorScore += line.errorValue();
+      line.analyze();
+      errorScore += line.illegalCharacter?.errorValue() ?? 0;
     }
 
     return errorScore.toString();

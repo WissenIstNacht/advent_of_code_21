@@ -38,10 +38,10 @@ void main() {
   });
   test('getNeighbours gets correct neighbours', () {
     var l = Line.parse(sampleInput[0]);
-    l.analyzeLine();
+    l.analyze();
     expect(l.isCorrupted(), isFalse);
     l = Line.parse(sampleInput[2]);
-    l.analyzeLine();
+    l.analyze();
     expect(l.isCorrupted(), isTrue);
     expect(l.illegalCharacter, equals("}"));
   });
