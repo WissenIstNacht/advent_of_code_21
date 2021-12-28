@@ -3,7 +3,7 @@ import 'package:advent_of_code_21/grid/grid.dart';
 import 'octopus.dart';
 
 class Cavern extends Grid<Octopus> {
-  int flashes = 0;
+  int flashCount = 0;
 
   /* CONSTRUCTOR ============================================================ */
 
@@ -24,8 +24,9 @@ class Cavern extends Grid<Octopus> {
     for (var j = 0; j < height; j++) {
       for (var i = 0; i < width; i++) {
         final octopus = getCell(i, j);
+        octopus.fill();
         if (octopus.isFull()) {
-          flashes++;
+          flashCount++;
           octopus.flash();
           final neighbours = getNeighbours(i, j);
           neighbours.forEach((o) => o.fill());
