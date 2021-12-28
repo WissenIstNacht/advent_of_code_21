@@ -1,14 +1,13 @@
 import 'package:advent_of_code_21/utils.dart';
 import 'package:test/test.dart';
 
-import '../../../bin/day9/helpers/cell.dart';
 import '../../../bin/day9/helpers/heightmap.dart';
 
 void main() {
   final sampleInput = readSampleInput(9);
   test('Properly constructs from sample input', () {
     final hm = HeightMap.parse(sampleInput);
-    final ints = hm.map<int>((Cell e) => e.content);
+    final ints = hm.map<int>((e) => e.content);
     expect(
         ints,
         equals([

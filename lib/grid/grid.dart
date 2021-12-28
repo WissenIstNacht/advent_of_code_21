@@ -1,4 +1,6 @@
-class Grid<T> {
+import 'cell.dart';
+
+class Grid<T extends Cell> {
   /* LATE VARS ===================================================== */
 
   late int width, height;
@@ -67,11 +69,11 @@ class Grid<T> {
 
   /* UTILS ================================================================== */
 
-  List<List<S>> map<S>(S Function(T) f) {
+  List<List<S>> map<S>(S Function(Cell) f) {
     return cells.map((List<T> r) => r.map(f).toList()).toList();
   }
 
-  void forEach(void Function(T) f) {
+  void forEach(void Function(Cell) f) {
     return cells.forEach((List<T> r) => r.forEach(f));
   }
 }

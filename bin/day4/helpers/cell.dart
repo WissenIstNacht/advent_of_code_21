@@ -1,10 +1,9 @@
-class Cell {
-  late int _number;
-  bool marked = false;
+import 'package:advent_of_code_21/grid/cell.dart';
 
-  Cell.fromString(String s) {
-    _number = int.parse(s);
+import '../../day9/helpers/markable.dart';
+
+class Number extends Cell<int> with Markable {
+  Number.parse(String s) : super(int.parse(s)) {
+    marked = false;
   }
-
-  int get number => _number;
 }

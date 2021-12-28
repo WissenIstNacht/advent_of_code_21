@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 
 import 'cell.dart';
 
-class Board extends Grid<Cell> {
+class Board extends Grid<Number> {
   /* CONSTRUCTORS =========================================================== */
 
   Board.fromLines(List<String> lines) {
@@ -19,7 +19,7 @@ class Board extends Grid<Cell> {
         throw ArgumentError(
             "Board input has a row that does not have 5 columns");
       }
-      final row = numbers.map((s) => Cell.fromString(s)).toList();
+      final row = numbers.map((s) => Number.parse(s)).toList();
       cells.add(row);
     }
   }
@@ -27,9 +27,9 @@ class Board extends Grid<Cell> {
   /* QUERIES ================================================================ */
 
   // TODO extract this to grid
-  Cell? contains(int n) {
+  Number? contains(int n) {
     for (var row in cells) {
-      final c = row.firstWhereOrNull((c) => c.number == n);
+      final c = row.firstWhereOrNull((c) => c.content == n);
       if (c != null) return c;
     }
   }
@@ -51,7 +51,7 @@ class Board extends Grid<Cell> {
     var score = 0;
     for (var row in cells) {
       for (var cell in row) {
-        if (!cell.marked) score += cell.number;
+        if (!cell.marked) score += cell.content;
       }
     }
     return score;

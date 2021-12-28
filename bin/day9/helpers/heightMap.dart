@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 
 import 'cell.dart';
 
-class HeightMap extends Grid<Cell> {
+class HeightMap extends Grid<Height> {
   /* CONSTRUCTOR ============================================================ */
 
   HeightMap.parse(List<String> lines) {
@@ -14,7 +14,7 @@ class HeightMap extends Grid<Cell> {
     lines.forEachIndexed((y, line) {
       final parsedLine = line
           .split("")
-          .mapIndexed((x, s) => Cell.parseWithPosition(s, x, y))
+          .mapIndexed((x, s) => Height.parseWithPosition(s, x, y))
           .toList();
       cells.add(parsedLine);
     });
@@ -22,11 +22,11 @@ class HeightMap extends Grid<Cell> {
 
   /* QUERIES ================================================================ */
 
-  bool isLowPoint(int val, List<Cell> neighbours) =>
+  bool isLowPoint(int val, List<Height> neighbours) =>
       neighbours.every((e) => e.content > val);
 
-  List<Cell> findLowPoints() {
-    final lows = <Cell>[];
+  List<Height> findLowPoints() {
+    final lows = <Height>[];
     for (var i = 0; i < height; i++) {
       for (var j = 0; j < width; j++) {
         final currCell = getCell(j, i);
@@ -37,12 +37,12 @@ class HeightMap extends Grid<Cell> {
     return lows;
   }
 
-  List<Cell> findBasin(Cell lowPoint) {
+  List<Height> findBasin(Height lowPoint) {
     var curr = lowPoint;
-    final backtracker = <Cell>[];
-    final basin = <Cell>[];
+    final backtracker = <Height>[];
+    final basin = <Height>[];
 
-    Cell getNext() {
+    Height getNext() {
       if (curr.x < width - 1 && !getCell(curr.x + 1, curr.y).marked) {
         return getCell(curr.x + 1, curr.y);
       }

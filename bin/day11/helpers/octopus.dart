@@ -1,12 +1,10 @@
+import 'package:advent_of_code_21/grid/cell.dart';
 import '../../day9/helpers/markable.dart';
 
-class Octopus with Markable {
-  late int content;
-
+class Octopus extends Cell<int> with Markable {
   /* CONSTRUCTOR ============================================================ */
 
-  Octopus.parse(String s) {
-    content = int.parse(s);
+  Octopus.parse(String s) : super(int.parse(s)) {
     marked = false;
   }
 
