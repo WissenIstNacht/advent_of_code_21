@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import '../../../bin/day4/helpers/cell.dart';
+import '../../../bin/day4/helpers/number.dart';
 
 void main() {
   test("Get number", () {

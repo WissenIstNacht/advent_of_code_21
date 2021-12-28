@@ -1,7 +1,7 @@
 import 'package:advent_of_code_21/grid/grid.dart';
 import 'package:collection/collection.dart';
 
-import 'cell.dart';
+import 'number.dart';
 
 class Board extends Grid<Number> {
   /* CONSTRUCTORS =========================================================== */
