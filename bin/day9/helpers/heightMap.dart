@@ -1,4 +1,5 @@
 import 'package:advent_of_code_21/grid/grid.dart';
+import 'package:collection/collection.dart';
 
 import 'cell.dart';
 
@@ -10,45 +11,16 @@ class HeightMap extends Grid<Cell> {
     width = lines.first.length;
 
     cells = [];
-    for (var line in lines) {
-      final parsedLine = line.split("").map((s) => Cell.parse(s)).toList();
+    lines.forEachIndexed((y, line) {
+      final parsedLine = line
+          .split("")
+          .mapIndexed((x, s) => Cell.parseWithPosition(s, x, y))
+          .toList();
       cells.add(parsedLine);
-    }
+    });
   }
 
   /* QUERIES ================================================================ */
-
-  List<Cell> getNeighbours(int x, int y) {
-    if (outOfGrid(x, y)) throw ArgumentError("Arguments are out of bounds");
-
-    final neighbours = <Cell>[];
-    if (x - 1 >= 0) {
-      final hc = getCell(x - 1, y);
-      hc.x = x - 1;
-      hc.y = y;
-      neighbours.add(hc);
-    }
-    if (y - 1 >= 0) {
-      final hc = getCell(x, y - 1);
-      hc.x = x;
-      hc.y = y - 1;
-      neighbours.add(hc);
-    }
-    if (x + 1 < width) {
-      final hc = getCell(x + 1, y);
-      hc.x = x + 1;
-      hc.y = y;
-      neighbours.add(hc);
-    }
-    if (y + 1 < height) {
-      final hc = getCell(x, y + 1);
-      hc.x = x;
-      hc.y = y + 1;
-      neighbours.add(hc);
-    }
-
-    return neighbours;
-  }
 
   bool isLowPoint(int val, List<Cell> neighbours) =>
       neighbours.every((e) => e.content > val);
