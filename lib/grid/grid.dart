@@ -56,7 +56,7 @@ class Grid<T> {
     return cells.map((List<T> r) => r.map(f).toList()).toList();
   }
 
-  void forEach(Function(T) f) {
+  void forEach(void Function(T) f) {
     return cells.forEach((List<T> r) => r.forEach(f));
   }
 }
