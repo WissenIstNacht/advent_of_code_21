@@ -18,18 +18,39 @@ class Cavern extends Grid<Octopus> {
     }
   }
 
-  /* QUERIES ================================================================ */
+  /* ACTIONS ================================================================ */
 
   void step() {
     for (var j = 0; j < height; j++) {
       for (var i = 0; i < width; i++) {
         final octopus = getCell(i, j);
         octopus.fill();
+      }
+    }
+
+    var currentFlashCount;
+    do {
+      currentFlashCount = flashCount;
+      for (var j = 0; j < height; j++) {
+        for (var i = 0; i < width; i++) {
+          final octopus = getCell(i, j);
+          if (octopus.isFull() && !octopus.marked) {
+            octopus.flash();
+            flashCount++;
+            final neighbours = getSurrounding(i, j);
+            neighbours.forEach((n) {
+              n.fill();
+            });
+          }
+        }
+      }
+    } while (flashCount != currentFlashCount);
+
+    for (var j = 0; j < height; j++) {
+      for (var i = 0; i < width; i++) {
+        final octopus = getCell(i, j);
         if (octopus.isFull()) {
-          flashCount++;
-          octopus.flash();
-          final neighbours = getNeighbours(i, j);
-          neighbours.forEach((o) => o.fill());
+          octopus.reset();
         }
       }
     }

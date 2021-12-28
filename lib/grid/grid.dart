@@ -50,6 +50,21 @@ class Grid<T> {
     return neighbours;
   }
 
+  // Given an int x,y position on the grid, return the surrounding elements as list
+  List<T> getSurrounding(int x, int y) {
+    if (outOfGrid(x, y)) throw ArgumentError("Arguments are out of bounds");
+    var neighbourhood = <T>[];
+    for (var i = x - 1; i <= x + 1; i++) {
+      for (var j = y - 1; j <= y + 1; j++) {
+        if (outOfGrid(i, j) || (i == x && j == y)) {
+          continue;
+        }
+        neighbourhood.add(getCell(i, j));
+      }
+    }
+    return neighbourhood;
+  }
+
   /* UTILS ================================================================== */
 
   List<List<S>> map<S>(S Function(T) f) {
