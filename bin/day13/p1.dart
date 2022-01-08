@@ -24,9 +24,6 @@ class Day13Part1 extends Solver {
     }
 
     final paper = Paper.fromCoordinates(coordinates);
-    final paperPrint = paper.map((c) => (c as Markable).marked ? "#" : ".");
-    paperPrint.forEach(print);
-
     paper.fold(instructions.first);
 
     return paper.countMarked().toString();
