@@ -48,7 +48,7 @@ class Paper extends Grid<Dot> {
         }
       }
     }
-    height = (height / 2).floor();
+    height = location;
   }
 
   void foldVertical(int location) {
@@ -60,7 +60,7 @@ class Paper extends Grid<Dot> {
         }
       }
     }
-    width = (width / 2).ceil();
+    width = location;
   }
 
   int countMarked() {
