@@ -19,6 +19,6 @@ void main() {
   test("test d13p2's solve method", () {
     solver = Day13Part2();
     final res = solver.solve(sampleInput);
-    expect(res, equals("195"));
+    expect(res, equals("2"));
   });
 }
