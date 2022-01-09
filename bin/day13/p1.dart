@@ -1,4 +1,3 @@
-import 'package:advent_of_code_21/grid/markable.dart';
 import 'package:advent_of_code_21/solver.dart';
 
 import 'helpers/instruction.dart';
@@ -26,6 +25,6 @@ class Day13Part1 extends Solver {
     final paper = Paper.fromCoordinates(coordinates);
     paper.fold(instructions.first);
 
-    return paper.countMarked().toString();
+    return paper.countMarkedCells().toString();
   }
 }

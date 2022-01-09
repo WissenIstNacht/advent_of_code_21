@@ -6,15 +6,15 @@ import 'instruction.dart';
 
 // Note: this approach uses a Grid with marks to simulate the dots on the
 // foldable paper. This is extremely wasteful.
-class Paper extends Grid<Dot> {
-  late List<Point> dots;
+class Paper extends MarkableGrid<Dot> {
+  /* CONSTRUCTOR ============================================================ */
 
   Paper.fromCoordinates(List<String> coordinates) {
     width = 0;
     height = 0;
 
     //find dimension
-    dots = coordinates.map((s) => Point.fromString(s)).toList();
+    final dots = coordinates.map((s) => Point.fromString(s)).toList();
     for (var dot in dots) {
       if (dot.x > width) width = dot.x;
       if (dot.y > height) height = dot.y;
@@ -30,15 +30,17 @@ class Paper extends Grid<Dot> {
     }
   }
 
+  /* ACTIONS ================================================================ */
+
   void fold(FoldInstruction i) {
     if (i.axis == Axis.horizontal) {
-      foldHorizontal(i.location);
+      _foldHorizontal(i.location);
     } else {
-      foldVertical(i.location);
+      _foldVertical(i.location);
     }
   }
 
-  void foldHorizontal(int location) {
+  void _foldHorizontal(int location) {
     // when 0-indexing, this is actually location+1
     for (var j = location; j < height; j++) {
       for (var i = 0; i < width; i++) {
@@ -51,7 +53,7 @@ class Paper extends Grid<Dot> {
     height = location;
   }
 
-  void foldVertical(int location) {
+  void _foldVertical(int location) {
     for (var j = 0; j < height; j++) {
       for (var i = location; i < width; i++) {
         if (getCell(i, j).marked == true) {
@@ -61,15 +63,5 @@ class Paper extends Grid<Dot> {
       }
     }
     width = location;
-  }
-
-  int countMarked() {
-    var count = 0;
-    for (var j = 0; j < height; j++) {
-      for (var i = 0; i < width; i++) {
-        if (getCell(i, j).marked) count++;
-      }
-    }
-    return count;
   }
 }
