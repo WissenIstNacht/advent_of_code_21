@@ -2,7 +2,7 @@ import 'package:advent_of_code_21/grid/grid.dart';
 
 import 'octopus.dart';
 
-class Cavern extends Grid<Octopus> {
+class Cavern extends MarkableGrid<Octopus> {
   int flashCount = 0;
 
   /* CONSTRUCTOR ============================================================ */

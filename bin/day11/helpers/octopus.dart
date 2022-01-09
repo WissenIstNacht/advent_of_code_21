@@ -1,7 +1,6 @@
 import 'package:advent_of_code_21/grid/cell.dart';
-import 'package:advent_of_code_21/grid/markable.dart';
 
-class Octopus extends Cell<int> with Markable {
+class Octopus extends MarkableCell<int> {
   /* CONSTRUCTOR ============================================================ */
 
   Octopus.parse(String s) : super(int.parse(s)) {
