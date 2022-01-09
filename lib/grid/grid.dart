@@ -77,3 +77,20 @@ class Grid<T extends Cell> {
     return cells.forEach((List<T> r) => r.forEach(f));
   }
 }
+
+class MarkableGrid<T extends MarkableCell> extends Grid<T> {
+  void markCell(int x, int y) {
+    final cell = getCell(x, y);
+    cell.marked = true;
+  }
+
+  int countMarkedCells() {
+    var count = 0;
+    for (var j = 0; j < height; j++) {
+      for (var i = 0; i < width; i++) {
+        if (getCell(i, j).marked) count++;
+      }
+    }
+    return count;
+  }
+}
