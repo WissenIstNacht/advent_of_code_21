@@ -2,7 +2,7 @@ import 'package:advent_of_code_21/grid/grid.dart';
 import 'package:collection/collection.dart';
 import 'height.dart';
 
-class HeightMap extends Grid<Height> {
+class HeightMap extends MarkableGrid<Height> {
   /* CONSTRUCTOR ============================================================ */
 
   HeightMap.parse(List<String> lines) {
