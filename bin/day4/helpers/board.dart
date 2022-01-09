@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 
 import 'number.dart';
 
-class Board extends Grid<Number> {
+class Board extends MarkableGrid<Number> {
   /* CONSTRUCTORS =========================================================== */
 
   Board.fromLines(List<String> lines) {
