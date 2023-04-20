@@ -3,6 +3,7 @@ import 'package:advent_of_code_21/utils.dart';
 import 'package:test/test.dart';
 
 import '../../bin/day14/p1.dart';
+import '../../bin/day14/p2.dart';
 
 void main() {
   late Solver solver;
@@ -15,9 +16,9 @@ void main() {
     final res = solver.solve(sampleInput);
     expect(res, equals("1588"));
   });
-  // test("test d14p2's solve method", () {
-  //   solver = Day14Part2();
-  //   final res = solver.solve(sampleInput);
-  //   expect(res, equals("2"));
-  // });
+  test("test d14p2's solve method", () {
+    solver = Day14Part2();
+    final res = solver.solve(sampleInput);
+    expect(res, equals("2188189693529"));
+  });
 }
