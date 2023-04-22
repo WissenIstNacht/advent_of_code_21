@@ -1,9 +1,9 @@
 import 'package:advent_of_code_21/executor.dart';
 
-import 'day14/p2.dart';
+import 'day15/p1.dart';
 
 void main(List<String> arguments) {
-  var solver = Day14Part2();
+  var solver = Day15Part1();
 
   Executor.execute(solver);
 }
