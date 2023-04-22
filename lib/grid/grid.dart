@@ -19,12 +19,14 @@ class Grid<T extends Cell> {
   Grid.filled(int width, int height, T val) {
     this.width = width;
     this.height = height;
-    List.filled(height, List.filled(width, val));
+    cells = List.generate(height, (_) => List.generate(width, (_) => val));
   }
 
   /* QUERY ================================================================== */
 
   T getCell(int x, int y) => cells[y][x];
+
+  void setCell(int x, int y, T val) => cells[y][x] = val;
 
   bool outOfGrid(int x, int y) => x < 0 || x >= width || y < 0 || y >= height;
 
