@@ -1,6 +1,5 @@
-import 'dart:collection';
-
 import 'package:advent_of_code_21/solver.dart';
+import 'package:collection/collection.dart';
 
 import 'helpers/risk_map.dart';
 
@@ -15,31 +14,43 @@ class Day15Part1 extends Solver {
   }
 
   static int dijktra(RiskMap map) {
-    map.getCell(0, 0).distance = 0;
+    var source = map.getCell(0, 0);
+    source.distance = 0;
+    var target = map.getCell(map.width - 1, map.height - 1);
 
-    var queue = Queue<VertexCell>();
-    map.forEach((c) => queue.add(c as VertexCell));
-    while (queue.isNotEmpty) {
-      var lowestDistance = queue.take(1).first;
-      for (var cell in queue) {
-        if (cell.distance < lowestDistance.distance) {
-          lowestDistance = cell;
-        }
+    var queue = PriorityQueue((VertexCell v1, VertexCell v2) {
+      if (v1.distance < v2.distance) {
+        return -1;
+      } else if (v1.distance > v2.distance) {
+        return 1;
+      } else {
+        return 0;
       }
+    });
+    map.forEach((c) => queue.add(c as VertexCell));
+    queue.add(source);
+    while (queue.isNotEmpty) {
+      var lowestDistance = queue.removeFirst();
 
-      queue.remove(lowestDistance);
+      if (lowestDistance == target) {
+        return target.distance;
+      }
 
       var neighbors = map.getNeighbours(lowestDistance.x, lowestDistance.y);
       var remainingNeighbors = neighbors.where((n) => queue.contains(n));
+
       remainingNeighbors.forEach((n) {
         var alternative = lowestDistance.distance + n.content;
         if (alternative < n.distance) {
           n.distance = alternative;
           n.previous = lowestDistance;
+          queue.remove(n);
+          queue.add(n);
         }
       });
     }
-    var res = map.getCell(map.width - 1, map.height - 1).distance;
+
+    var res = target.distance;
     return res;
   }
 }
