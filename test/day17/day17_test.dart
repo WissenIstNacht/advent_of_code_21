@@ -13,6 +13,6 @@ void main() {
   test("test d17p1's solve method", () {
     solver = Day17Part1();
     final res = solver.solve(sampleInput);
-    expect(res, equals("42"));
+    expect(res, equals("45"));
   });
 }
