@@ -27,6 +27,6 @@ class Probe {
   }
 
   bool isPastArea(TargetArea area) {
-    return posX > area.xHi || posY < area.yHi;
+    return posX > area.xHi || (posX >= area.xLo && posY < area.yLo);
   }
 }
