@@ -10,7 +10,7 @@ class Day18Part1 extends Solver {
   String solve(List<String> input) {
     var sfns = input.map(parse).toList();
     var res = sum(sfns);
-    return sfns.length.toString();
+    return res.magnitude().toString();
   }
 
   SFN sum(List<SFN> sfns) {

@@ -9,12 +9,19 @@ void main() {
   setUp(() {
     sampleInput = readSampleInput(18);
   });
-  test("test d18p1's solve method", () {
+  test("test d18p1's sum()", () {
     final solver = Day18Part1();
     var sfns = sampleInput.map(parse).toList();
 
     final res = solver.sum(sfns);
     expect(res.toString(),
         equals("[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]"));
+  });
+  test("test d18p1's solve()", () {
+    final solver = Day18Part1();
+    var sfns = sampleInput.map(parse).toList();
+
+    final res = solver.solve(sampleInput);
+    expect(res.toString(), equals("3488"));
   });
 }
