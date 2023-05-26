@@ -86,7 +86,7 @@ class SFN {
     if (r.isLeft) {
       return this;
     } else {
-      return r.right.findLeftestLeaf();
+      return r.right.findRightestLeaf();
     }
   }
 
@@ -94,13 +94,14 @@ class SFN {
     if (l.isLeft && l.left >= 10) {
       return this;
     }
-    if (r.isLeft && r.left >= 10) {
-      return this;
-    }
 
     if (l.isRight) {
       var toSplit = l.right.shouldSplit();
       if (toSplit != null) return toSplit;
+    }
+
+    if (r.isLeft && r.left >= 10) {
+      return this;
     }
 
     if (r.isRight) {
@@ -116,6 +117,7 @@ class SFN {
       var newNode = SFN(Left(newL), Left(newR));
       l = Right(newNode);
       newNode.parent = this;
+      return;
     }
     if (r.isLeft && r.left >= 10) {
       var newL = r.left ~/ 2;
@@ -123,6 +125,7 @@ class SFN {
       var newNode = SFN(Left(newL), Left(newR));
       r = Right(newNode);
       newNode.parent = this;
+      return;
     }
   }
 
