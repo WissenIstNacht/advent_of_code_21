@@ -225,4 +225,24 @@ void main() {
         equals(
             "[[[[7,7],[7,8]],[[9,5],[8,7]]],[[[6,8],[0,8]],[[9,9],[9,0]]]]"));
   });
+  test("test magnitude() on '[[1,2],[[3,4],5]]'", () {
+    const input = "[[1,2],[[3,4],5]]";
+    final sfn = parse(input);
+    final res = sfn.magnitude();
+    expect(res, equals(143));
+  });
+  test("test magnitude() on '[[[[0,7],4],[[7,8],[6,0]]],[8,1]]'", () {
+    const input = "[[[[0,7],4],[[7,8],[6,0]]],[8,1]]";
+    final sfn = parse(input);
+    final res = sfn.magnitude();
+    expect(res, equals(1384));
+  });
+  test(
+      "test magnitude() on '[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]'",
+      () {
+    const input = "[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]";
+    final sfn = parse(input);
+    final res = sfn.magnitude();
+    expect(res, equals(3488));
+  });
 }

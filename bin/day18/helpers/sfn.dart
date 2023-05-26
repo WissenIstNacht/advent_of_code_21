@@ -16,6 +16,24 @@ class SFN {
     return newSfn;
   }
 
+  int magnitude() {
+    int leftMagnitude, rightMagnitude;
+
+    if (l.isLeft) {
+      leftMagnitude = l.left;
+    } else {
+      leftMagnitude = l.right.magnitude();
+    }
+
+    if (r.isLeft) {
+      rightMagnitude = r.left;
+    } else {
+      rightMagnitude = r.right.magnitude();
+    }
+
+    return 3 * leftMagnitude + 2 * rightMagnitude;
+  }
+
   SFN? shouldExplode([int depth = 0]) {
     if (l.isRight) {
       var toExplode = l.right.shouldExplode(depth + 1);
